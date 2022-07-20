@@ -204,7 +204,7 @@ class Snap(Memory):
         :param read_nowait: do not wait for the snap to finish reading
         """
         snapdata = self.read(**kwargs)
-        for ctr in range(0, len(snapdata['data'][snapdata['data'].keys()[0]])):
+        for ctr in range(0, len(snapdata['data'][list(snapdata['data'].keys())[0]])):
             print('%5i ' % ctr, end='')
             for key in sorted(snapdata['data'].keys()):
                 print('{}({})\t'.format(key, snapdata['data'][key][ctr]), end='')
