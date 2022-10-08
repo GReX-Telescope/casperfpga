@@ -786,11 +786,11 @@ class KatcpTransport(Transport, katcp.CallbackClient):
                     self.logger.error('FEWER than THREE meta inform '
                                  'arguments: %s' % str(inform.arguments))
                     continue
-            for arg in inform.arguments:
-                if isinstance(arg, bytes):
-                    arg = arg.replace(b'\\_', b' ')
-                elif isinstance(arg, str):
-                    arg = arg.replace("\\_", " ")
+            # Mysteriously, the inform arguments are sometimes strings??
+            # "Don't blame me, blame katcp"
+            for i, arg in enumerate(inform.arguments):
+                if isinstance(arg, str):
+                    inform.arguments[i] = str.encode(arg)
             name = inform.arguments[0].decode()
             tag = inform.arguments[1].decode()
             param = inform.arguments[2].decode()
