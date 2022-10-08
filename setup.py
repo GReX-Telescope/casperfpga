@@ -65,7 +65,6 @@ setuptools.setup(
         "redis",
         "tftpy",
         "progressbar2",
-        "requests",
         "crcmod",
     ],
     extras_require={"test": ["pytest", "pytest-datadir"]},
