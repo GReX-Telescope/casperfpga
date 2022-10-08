@@ -788,7 +788,7 @@ class KatcpTransport(Transport, katcp.CallbackClient):
                     continue
             for arg in inform.arguments:
                 print(type(arg))
-                arg = arg.replace('\\_', ' ')
+                arg = arg.replace(b'\\_', b' ')
             name = inform.arguments[0].decode()
             tag = inform.arguments[1].decode()
             param = inform.arguments[2].decode()
