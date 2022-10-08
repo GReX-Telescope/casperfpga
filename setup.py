@@ -66,7 +66,6 @@ setuptools.setup(
         "tftpy",
         "progressbar2",
         "requests",
-        "circus",
         "crcmod",
     ],
     extras_require={"test": ["pytest", "pytest-datadir"]},
