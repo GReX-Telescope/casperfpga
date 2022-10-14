@@ -1063,8 +1063,6 @@ class SnapAdc(object):
         :param parent: The parent device, normally a casperfpga instance
         :param device_name:
         :param device_info:
-        :param memorymap_dict:
-        :param initialize:
         :param kwargs:
         :return:
         """
