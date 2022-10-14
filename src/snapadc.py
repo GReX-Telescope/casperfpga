@@ -87,10 +87,6 @@ class SnapAdc(object):
 
         self.logger = kwargs.get("logger", logging.getLogger(__name__))
 
-        # FIXME remove
-        print(self.logger)
-        print(self.resolution)
-
         # Current delay tap settings for all IDELAYE2
         self.curDelay = None
 
@@ -103,7 +99,7 @@ class SnapAdc(object):
         self.laneList = [0, 1, 2, 3, 4, 5, 6, 7]
 
         if self.resolution not in [8, 12, 14]:
-            logger.error("Invalid resolution parameter")
+            self.logger.error("Invalid resolution parameter")
             raise ValueError("Invalid resolution parameter")
 
         self.curDelay = [[0] * len(self.laneList)] * len(self.adcList)
