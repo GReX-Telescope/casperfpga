@@ -71,7 +71,6 @@ class SnapAdc(object):
 
         Inputs:
            host (casperfpga.Casperfpga): Host FPGA
-           num_chans (int): Number of channels per ADC chip. Valid values are 1, 2, or 4.
            resolution (int): Bit resolution of the ADC. Valid values are 8, 12.
            ref (float): Reference frequency (in MHz) from which ADC clock is derived. If None, an external sampling clock must be used.
         """
@@ -1075,4 +1074,4 @@ class SnapAdc(object):
         :param kwargs:
         :return:
         """
-        return cls(parent, device_name, device_info, initialize, **kwargs)
+        return cls(parent, device_name, device_info["adc_resolution"], initialize, **kwargs)
