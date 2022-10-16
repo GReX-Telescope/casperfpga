@@ -1066,4 +1066,6 @@ class SnapAdc(object):
         :param kwargs:
         :return:
         """
+        print(device_name)
+        print(device_info)
         return cls(parent, device_name, device_info["adc_resolution"], **kwargs)
