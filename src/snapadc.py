@@ -101,11 +101,10 @@ class SnapAdc(object):
 
         if parent.devices['SNAP']['clk_src'] == 'sys_clk':
            self.lmx = LMX2581(parent, 'lmx_ctrl', fosc=ref)
-           self.clksw = HMC922(parent, "adc16_use_synth")
         else:
            self.lmx = None
-           self.clksw = HMC922(parent, "adc16_use_synth")
 
+        self.clksw = HMC922(parent, "adc16_use_synth")
         self.ram = [WishBoneDevice(parent, name) for name in self.ramList]
 
         if ADC not in ["HMCAD1511", "HMCAD1520"]:
@@ -125,9 +124,6 @@ class SnapAdc(object):
 
         # below is from hera_corr_f/blocks.py
         # Attach our own wrapping of LMX
-        self.name = "SNAP_adc"
-        self.clock_divide = 1
-        self.resolution = resolution
         self.working_taps = {}
         self._retry_cnt = 0
         # self._retry = kwargs.get('retry',7)
@@ -1066,6 +1062,9 @@ class SnapAdc(object):
         :param kwargs:
         :return:
         """
-        print(device_name)
-        print(device_info)
-        return cls(parent, device_name, int(device_info["adc_resolution"]), **kwargs)
+        resolution = int(device_info["adc_resolution"])
+        if resolution == 8:
+            controller = "HMCAD1511"
+        else:
+            controller = "HMCAD1520"
+        return cls(parent, controller, resolution, **kwargs)
