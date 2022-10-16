@@ -64,7 +64,7 @@ class SnapAdc(object):
     ERROR_RAMP = 5
 
     def __init__(
-        self, parent, ADC="HMCAD1511", resolution=8, ref=10,  **kwargs
+            self, parent, ADC="HMCAD1511", resolution=8, ref=10,  device_name="SNAP_adc", **kwargs
     ):
         """
         Instantiate an ADC block.
@@ -80,6 +80,7 @@ class SnapAdc(object):
         self.lmx = None
         self.clksw = None
         self.ram = None
+        self.name = device_name
 
         # Current delay tap settings for all IDELAYE2
         self.curDelay = None
@@ -1067,4 +1068,4 @@ class SnapAdc(object):
             controller = "HMCAD1511"
         else:
             controller = "HMCAD1520"
-        return cls(parent, controller, resolution, **kwargs)
+        return cls(parent, controller, resolution, device_name, **kwargs)
