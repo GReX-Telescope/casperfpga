@@ -100,7 +100,7 @@ class SnapAdc(object):
         # self.curDelay = np.zeros((len(self.adcList),len(self.laneList)))
 
         if parent.devices['SNAP']['clk_src'] == 'sys_clk':
-           self.lmx = LMX2581(parent,'lmx_ctrl', fosc=ref)
+           self.lmx = LMX2581(parent, 'lmx_ctrl', fosc=ref)
            self.clksw = HMC922(parent, "adc16_use_synth")
         else:
            self.lmx = None
@@ -1068,4 +1068,4 @@ class SnapAdc(object):
         """
         print(device_name)
         print(device_info)
-        return cls(parent, device_name, device_info["adc_resolution"], **kwargs)
+        return cls(parent, device_name, int(device_info["adc_resolution"]), **kwargs)
