@@ -70,7 +70,7 @@ class SnapAdc(object):
         Instantiate an ADC block.
 
         Inputs:
-           host (casperfpga.Casperfpga): Host FPGA
+           parent (casperfpga.Casperfpga): Parent CasperFpga object
            resolution (int): Bit resolution of the ADC. Valid values are 8, 12.
            ref (float): Reference frequency (in MHz) from which ADC clock is derived. If None, an external sampling clock must be used.
         """
@@ -251,7 +251,7 @@ class SnapAdc(object):
 
         # ADC init/lmx select messes with FPGA clock, so reprogram
         self.logger.debug("Reprogramming the FPGA for ADCs")
-        self.host.transport.prog_user_image()
+        self.parent.transport.prog_user_image()
         self.selectADC()
         self.logger.debug("Reprogrammed")
 
